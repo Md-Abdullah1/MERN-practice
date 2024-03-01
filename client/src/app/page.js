@@ -1,17 +1,23 @@
 'use client';
 // import Image from "next/image";
 import { useEffect, useState } from "react";
-// import axios from "@/apis/"
+import axios from "../apis/axios"
 export default function Home() {
   const [data,setData] = useState('loading');
   const [people,setPeople] = useState([]); 
 
-  useEffect(()=>{
-     fetch('http://localhost:9000/api/home')
-     .then(response=>response.json())
-     .then((res)=>{console.log('data',res)
-    setData(res.message)
-   setPeople(res.people)})
+  useEffect( ()=>{
+     async ()=>{
+      
+      try{
+      const res = await axios.get('localhost:9000/api/home')
+      console.log('data',res)
+      setData(res.message)
+      setPeople(res.people)
+    } 
+    catch(error){
+      console.log('error',error)
+    }}
   },[]);
   
   

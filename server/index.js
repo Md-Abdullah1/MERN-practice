@@ -19,6 +19,7 @@ app.get('/api/home',(req,res)=>{
 })
 
 app.get('/api/names',(req,res)=>{
+    
     res.send({people:people})
 })
 
